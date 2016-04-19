@@ -32,9 +32,18 @@ export default React.createClass({
   },
   dropHandler(e) {
     console.log("drop!");
+    console.log(e);
     this.setState({display: "_hidden"});
     e.preventDefault();
     e.stopPropagation();
+
+    if (e.dataTransfer) {
+      if (e.dataTransfer.files.length) {
+        e.preventDefault();
+        e.stopPropagation();
+        readDropFile(e);
+      }
+    }
   },
   render() {
     const className = (this.state.display) ? "drop-modal "+this.state.display : "drop-modal" ;

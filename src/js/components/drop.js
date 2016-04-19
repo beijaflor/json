@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default React.createClass({
+  propTypes: {
+    contentType: React.PropTypes.string.isRequired,
+    callBack: React.PropTypes.func.isRequired
+  },
   getInitialState: () => {
     return {
       display: "_hidden"
@@ -32,16 +36,13 @@ export default React.createClass({
   },
   dropHandler(e) {
     console.log("drop!");
-    console.log(e);
     this.setState({display: "_hidden"});
-    e.preventDefault();
-    e.stopPropagation();
 
     if (e.dataTransfer) {
       if (e.dataTransfer.files.length) {
         e.preventDefault();
         e.stopPropagation();
-        readDropFile(e);
+        this.props.callBack(e);
       }
     }
   },
@@ -55,7 +56,7 @@ export default React.createClass({
         onDragEnd={this.dragCancelHandler}
         onDragLeave={this.dragCancelHandler}
         onDrop={this.dropHandler}
-      >DROP JSON HERE</div>
+      >DROP {this.props.contentType.toUpperCase()} HERE</div>
     );
   }
 })

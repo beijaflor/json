@@ -6,6 +6,6 @@ console.log("yo-ho-!");
 console.log(React);
 
 ReactDOM.render(
-  <DropView />,
+  <DropView contentType="json" callBack={readDropFile}/>,
   document.getElementById('react')
 );

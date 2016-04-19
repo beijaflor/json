@@ -348,51 +348,31 @@
       $(".drop").hide();
     });
 
-    $(document)
-      .on("dragenter", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $(".drop").show();
-      })
-      .on("dragover", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-      })
-      .on("dragend", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $(".drop").hide();
-      })
-      .on("drop", function(e) {
-        $(".drop").hide();
-
-        if (e.originalEvent.dataTransfer) {
-          if (e.originalEvent.dataTransfer.files.length) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            var reader = new FileReader();
-
-            reader.onload = function(ev) {
-              console.log(ev.target.result);
-              $(".json textarea").val(ev.target.result);
-
-              setTimeout(function() {
-                doJSON();
-                $(".json textarea").blur();
-              }, 1);
-            }
-
-            reader.readAsText(e.originalEvent.dataTransfer.files[0]);
-          }
-        }
-      });
-
     // highlight CSV on click
     $(".csv textarea").click(function() {$(this).focus().select();});
 
     loadPermalink();
   });
+
+
+  // global functions for react
+
+  // read dropped file and set to text area
+  function readDropFile(e) {
+    const reader = new FileReader();
+
+    reader.onload = (ev) => {
+      console.log(ev.target.result);
+      $(".json textarea").val(ev.target.result);
+
+      setTimeout(function() {
+        doJSON();
+        $(".json textarea").blur();
+      }, 1);
+    }
+
+    reader.readAsText(e.dataTransfer.files[0]);
+  }
 </script>
 
 </head>
@@ -468,6 +448,9 @@
       <table></table>
     </div>
   </div>
+
+<div id="react"></div>
+
 </section>
 
 <footer>

@@ -29,7 +29,50 @@ export default React.createClass({
   },
   render() {
     console.log("render!");
+    console.log(this.state.rowCsv);
     const className = (this.state.display) ? "row-csv "+this.state.display : "row-csv" ;
+
+    const rows = $.csv.toArrays(this.state.rowCsv);
+    const header = rows.shift();
+
+    const table = (() => {
+      if (rows.length > 0) {
+        const headerNodes = header.map((col) => {
+          return (
+            <th key={col}>{col}</th>
+          );
+        });
+
+        const rowNodes = rows.map((row) => {
+          const cellNodes = row.map((cell) => {
+            return (
+              <td>{cell}</td>
+            );
+          });
+          return (
+            <tr>
+              {cellNodes}
+            </tr>
+          );
+        });
+
+        return (
+          <table
+            onClick={this.clickHandler}
+          >
+            <thead>
+              <tr>{headerNodes}</tr>
+            </thead>
+            <tbody>
+              {rowNodes}
+            </tbody>
+          </table>
+        )
+      } else {
+        return null;
+      }
+    })()
+
     return (
       <div className="csv-table">
         <textarea className={className} readOnly
@@ -37,17 +80,7 @@ export default React.createClass({
           onFocus={this.focusHandler}
           onBlur={this.blurHandler}
         />
-        <table
-          onClick={this.clickHandler}
-        >
-          <thead>
-            <tr><th>test1</th><th>test2</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>val1</td><td>val2</td></tr>
-            <tr><td>val3</td><td>val4</td></tr>
-          </tbody>
-        </table>
+        {table}
       </div>
     );
   }

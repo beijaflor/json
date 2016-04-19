@@ -107,3 +107,7 @@ footer p {
   color: #fff; font-size: 40pt;
   padding-top: 75px;
 }
+
+._hidden {
+  display: none !important;
+}

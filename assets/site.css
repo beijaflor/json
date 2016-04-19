@@ -118,6 +118,8 @@ footer p {
   position: relative;
   width: 90%;
   height: 17em;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .csv-table {color: black;margin-top: 30px;}

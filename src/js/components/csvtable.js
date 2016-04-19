@@ -5,7 +5,8 @@ export default React.createClass({
   },
   getInitialState: () => {
     return {
-      rowCsv: document.querySelector(".csv textarea").value
+      rowCsv: document.querySelector(".csv textarea").value,
+      display: ""
     }
   },
   focusHandler() {
@@ -14,13 +15,31 @@ export default React.createClass({
       rowCsv: document.querySelector(".csv textarea").value
     });
   },
+  blurHandler() {
+    console.log("blur!");
+    this.setState({
+      display: "_hidden"
+    });
+  },
+  clickHandler() {
+    console.log("clicked!");
+    this.setState({
+      display: ""
+    });
+  },
   render() {
     console.log("render!");
-    console.log(this.props);
+    const className = (this.state.display) ? "row-csv "+this.state.display : "row-csv" ;
     return (
       <div className="csv-table">
-        <textarea className="row-csv" value={this.state.rowCsv} onFocus={this.focusHandler} readOnly />
-        <table>
+        <textarea className={className} readOnly
+          value={this.state.rowCsv}
+          onFocus={this.focusHandler}
+          onBlur={this.blurHandler}
+        />
+        <table
+          onClick={this.clickHandler}
+        >
           <thead>
             <tr><th>test1</th><th>test2</th></tr>
           </thead>

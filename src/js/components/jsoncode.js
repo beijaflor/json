@@ -17,10 +17,19 @@ export default React.createClass({
   },
   blurHandler(e) {
     console.log("blur!");
-    this.setState({display: "_hidden"});
+    const val = e.target.value;
+    this.setState({display: "_hidden", value: val});
   },
   focusHandler(e) {
     console.log("focus!");
+  },
+  pasteHandler(e) {
+    console.log("paste!");
+    if(this.myTextInput !== null) {
+      window.setTimeout(() => {
+        this.myTextInput.blur();
+      }, 0);
+    }
   },
   clickHandler(e) {
     console.log("click!");
@@ -50,6 +59,7 @@ export default React.createClass({
         <textarea className={className1} value={this.state.value}
           onChange={this.changeHandler}
           onBlur={this.blurHandler}
+          onPaste={this.pasteHandler}
           ref={(ref) => this.myTextInput = ref}
         />
         <pre className={className2}

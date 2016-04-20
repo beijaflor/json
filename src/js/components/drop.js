@@ -42,6 +42,7 @@ export default React.createClass({
       if (e.dataTransfer.files.length) {
         e.preventDefault();
         e.stopPropagation();
+        this.props.dropHandler();
         this.props.callBack(e);
       }
     }

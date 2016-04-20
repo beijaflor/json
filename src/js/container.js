@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // load components
-import DropView from "./components/drop";
+import DropView from "./components/dropContainer";
 import CsvTableView from "./components/csvtable";
 import JsonCodeView from "./components/jsoncode";
 
@@ -39,6 +39,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dropJson: () => { dispatch(actions.setUpdateJson()) },
     handleClick: () => { dispatch(actions.increment()) }
   }
 }

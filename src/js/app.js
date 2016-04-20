@@ -1,31 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import DropView from "./components/drop";
-import CsvTableView from "./components/csvtable";
-import JsonCodeView from "./components/jsoncode";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+// setup redux
+import reducer from "./reducer";
+import App from "./container";
+const store = createStore(reducer);
 
 console.log("yo-ho-!");
-console.log(React);
-
-function cb(e) {
-  readDropFile(e);
-}
-
-const App = React.createClass({
-  componentDidMount() {
-  },
-  render() {
-    return (
-      <div>
-        <DropView contentType="json" callBack={cb} />
-        <JsonCodeView />
-        <CsvTableView />
-      </div>
-    );
-  }
-});
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('react')
 );

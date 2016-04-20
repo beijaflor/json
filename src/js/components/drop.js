@@ -3,7 +3,7 @@ import React from 'react';
 export default React.createClass({
   propTypes: {
     contentType: React.PropTypes.string.isRequired,
-    callBack: React.PropTypes.func.isRequired
+    dropHandler: React.PropTypes.func.isRequired
   },
   getInitialState: () => {
     return {
@@ -12,7 +12,6 @@ export default React.createClass({
   },
   componentDidMount() {
     console.log("dropView mounted!");
-    const self = this;
     document.addEventListener("dragenter", (e) => {
       console.log("drag enter!!");
       this.setState({display: ""});
@@ -42,8 +41,12 @@ export default React.createClass({
       if (e.dataTransfer.files.length) {
         e.preventDefault();
         e.stopPropagation();
-        this.props.dropHandler();
-        this.props.callBack(e);
+
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          this.props.dropHandler(ev.target.result);
+        };
+        reader.readAsText(e.dataTransfer.files[0]);
       }
     }
   },

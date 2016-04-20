@@ -28,7 +28,7 @@ export default React.createClass({
     });
   },
   render() {
-    console.log("render!");
+    console.log("render csvtable!");
     console.log(this.state.rowCsv);
     const className = (this.state.display) ? "row-csv "+this.state.display : "row-csv" ;
 

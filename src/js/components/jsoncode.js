@@ -50,7 +50,7 @@ export default React.createClass({
     return null;
   },
   render() {
-    console.log("render!");
+    console.log("render jsoncode!");
     const prettyJson = this.prettyJson(this.state.value);
     const className1 = (this.state.display) ? "row-json "+this.state.display : "row-json" ;
     const className2 = (!this.state.display) ? "pretty-json _hidden" : "pretty-json" ;

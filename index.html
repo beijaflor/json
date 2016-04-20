@@ -353,26 +353,6 @@
 
     loadPermalink();
   });
-
-
-  // global functions for react
-
-  // read dropped file and set to text area
-  function readDropFile(e) {
-    const reader = new FileReader();
-
-    reader.onload = (ev) => {
-      console.log(ev.target.result);
-      $(".json textarea").val(ev.target.result);
-
-      setTimeout(function() {
-        doJSON();
-        $(".json textarea").blur();
-      }, 1);
-    }
-
-    reader.readAsText(e.dataTransfer.files[0]);
-  }
 </script>
 
 </head>

@@ -1,5 +1,6 @@
 const initialState = {
-  hoge: "huge"
+  hoge: "huge",
+  json: ""
 }
 
 export default function reducer(state = initialState, action) {
@@ -8,7 +9,7 @@ export default function reducer(state = initialState, action) {
       return { hoge: state.hoge + 1 }
     }
     case "DROPJSON": {
-      console.log("DROPJSON fired!");
+      return { json: action.json }
     }
     default:
       return state

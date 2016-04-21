@@ -18,9 +18,9 @@ const App = React.createClass({
   render() {
     return (
       <div>
-        <DropView contentType="json" />
         <JsonCodeView />
         <CsvTableView />
+        <DropView contentType="json" />
       </div>
     );
   }

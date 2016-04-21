@@ -108,7 +108,7 @@ footer p {
   opacity: 0.5; background-color: #444;
   vertical-align: middle; text-align: center;
   color: #fff; font-size: 40pt;
-  padding-top: 75px;
+  line-height: 100vh;
 }
 
 /* ---------------------------- */

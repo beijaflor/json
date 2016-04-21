@@ -5,7 +5,7 @@ export default React.createClass({
   },
   getInitialState: () => {
     return {
-      display: ""
+      display: false
     }
   },
   focusHandler() {
@@ -14,19 +14,24 @@ export default React.createClass({
   blurHandler() {
     console.log("blur!");
     this.setState({
-      display: "_hidden"
+      display: false
     });
   },
   clickHandler() {
     console.log("clicked!");
     this.setState({
-      display: ""
+      display: true
     });
   },
   render() {
     console.log("render csvtable!");
     const rowCsv = csvTo(this.props.json);
-    const className = (this.state.display) ? "row-csv "+this.state.display : "row-csv" ;
+    let display = true;
+    if (rowCsv)
+      display = false;
+    if (this.state.display)
+      display = true;
+    const className = (display) ? "row-csv" : "row-csv _hidden" ;
 
     const rows = $.csv.toArrays(rowCsv);
     const header = rows.shift();

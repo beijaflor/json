@@ -12,18 +12,13 @@ import * as actions from "./actions";
 console.log(actions);
 
 // logic
-function cb(e) {
-  readDropFile(e);
-}
-
 const App = React.createClass({
   componentDidMount() {
   },
   render() {
     return (
       <div>
-        <div>{ this.props.hoge }</div>
-        <DropView contentType="json" callBack={cb} />
+        <DropView contentType="json" />
         <JsonCodeView />
         <CsvTableView />
       </div>

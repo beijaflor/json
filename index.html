@@ -360,79 +360,58 @@
 
 <h1>Convert JSON to CSV</h1>
 
-<section class="json">
+<p>
+  <span class="instruction editing">
+    Paste your JSON below.
+  </span>
 
-  <p>
-    <span class="instruction editing">
-      Paste your JSON below.
-    </span>
+  <span class="instruction rendered">
+    Click your JSON below to edit.
+  </span>
 
-    <span class="instruction rendered">
-      Click your JSON below to edit.
-    </span>
+  <span class="save">
+    <a href="#">Create a permalink</a> any time.
+  </span>
 
-    <span class="save">
-      <a href="#">Create a permalink</a> any time.
-    </span>
+  <span>
+    Please <a target="_blank" href="https://github.com/konklone/json/issues">report bugs and send feedback</a> on GitHub.
+  </span>
 
-    <span>
-      Please <a target="_blank" href="https://github.com/konklone/json/issues">report bugs and send feedback</a> on GitHub.
-    </span>
+  <span>
+    Made by <a href="https://twitter.com/konklone">@konklone.</a>
+  </span>
+</p>
 
-    <span>
-      Made by <a href="https://twitter.com/konklone">@konklone.</a>
-    </span>
-  </p>
+<div class="warning">
+  Extremely large files may cause trouble &mdash; the conversion is done inside your browser.
+</div>
 
-  <div class="areas">
-    <textarea class="editing"></textarea>
-    <pre class="rendered"><code></code></pre>
-    <div class="drop">DROP JSON HERE</div>
-  </div>
+<div class="error">
+  There was an error parsing this JSON. If you're sure this JSON is valid, please
+  <a class="report" target="_blank"
+    href="https://github.com/konklone/json/issues/new">
+    file an issue</a>.
+  You can
+  <a class="save" href="#">create a permalink to the error</a>
+  any time.
+</div>
 
-  <div class="warning">
-    Extremely large files may cause trouble &mdash; the conversion is done inside your browser.
-  </div>
+<p>
+  <span class="rendered">
+    Below are the first few rows (<span class="rows count"></span> total).
 
-  <div class="error">
-    There was an error parsing this JSON. If you're sure this JSON is valid, please
-    <a class="report" target="_blank"
-      href="https://github.com/konklone/json/issues/new">
-      file an issue</a>.
-    You can
-    <a class="save" href="#">create a permalink to the error</a>
-    any time.
-  </div>
-</section>
+    <a download="result.csv" href="#" class="download">
+      Download the entire CSV</a>,
 
-<section class="csv">
+    or <a href="#" class="raw">show the raw data</a>.
+  </span>
 
-  <p>
-    <span class="rendered">
-      Below are the first few rows (<span class="rows count"></span> total).
-
-      <a download="result.csv" href="#" class="download">
-        Download the entire CSV</a>,
-
-      or <a href="#" class="raw">show the raw data</a>.
-    </span>
-
-    <span class="editing">
-      Your JSON will appear below as a table.
-    </span>
-  </p>
-
-  <div class="areas">
-    <textarea class="editing" readonly></textarea>
-    <div class="table rendered">
-      <table></table>
-    </div>
-  </div>
-
-</section>
+  <span class="editing">
+    Your JSON will appear below as a table.
+  </span>
+</p>
 
 <div id="react"></div>
-
 <footer>
 <p>
   Thanks to <a href="https://twitter.com/benbalter">@benbalter</a> for help, and to <a href="https://twitter.com/onyxfish">@onyxfish</a> for the amazing <a href="https://csvkit.readthedocs.org/en/latest/scripts/in2csv.html">csvkit</a>.

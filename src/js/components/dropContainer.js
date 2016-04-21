@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import DropContainer from "../components/drop.js";
-import { dropHandler } from "../actions";
+import { dropHandler, displayChanageHandler } from "../actions";
 
 function mapStateToProps(state) {
   return state;
@@ -10,7 +10,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dropHandler: (json) => { dispatch(dropHandler(json)) }
+    dropHandler: (json) => {
+      dispatch(dropHandler(json));
+      dispatch(displayChanageHandler("jsoncode", true));
+    }
   }
 }
 

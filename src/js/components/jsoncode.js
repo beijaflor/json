@@ -4,12 +4,9 @@ export default React.createClass({
   propTypes: {
     value: React.PropTypes.string.isRequired,
     json: React.PropTypes.string.isRequired,
-    updateValueHandler: React.PropTypes.func.isRequired
-  },
-  getInitialState: () => {
-    return {
-      display: ""
-    }
+    display: React.PropTypes.bool.isRequired,
+    updateValueHandler: React.PropTypes.func.isRequired,
+    displayHandler: React.PropTypes.func.isRequired
   },
   changeHandler(e) {
     console.log("changed!");
@@ -20,7 +17,7 @@ export default React.createClass({
     console.log("blur!");
     const val = e.target.value;
     this.props.updateValueHandler(val);
-    this.setState({display: "_hidden"});
+    this.props.displayHandler(true);
   },
   focusHandler(e) {
     console.log("focus!");
@@ -35,11 +32,12 @@ export default React.createClass({
   },
   clickHandler(e) {
     console.log("click!");
-    this.setState({display: ""}, () => {
+    this.props.displayHandler(false)
+    window.setTimeout( () => {
       if(this.myTextInput !== null) {
         this.myTextInput.focus();
       }
-    });
+    }, 0);
   },
   prettyJson(str) {
     const json = jsonFrom(str);
@@ -53,9 +51,12 @@ export default React.createClass({
   },
   render() {
     console.log("render jsoncode!");
+
+console.log(this.props.display)
+
     const prettyJson = this.prettyJson(this.props.json);
-    const className1 = (this.state.display) ? "row-json "+this.state.display : "row-json" ;
-    const className2 = (!this.state.display) ? "pretty-json _hidden" : "pretty-json" ;
+    const className1 = (this.props.display) ? "row-json _hidden" : "row-json" ;
+    const className2 = (!this.props.display) ? "pretty-json _hidden" : "pretty-json" ;
     return (
       <div className="json-code">
         <textarea className={className1} value={this.props.value}

@@ -2,27 +2,20 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
-    json: React.PropTypes.string.isRequired
-  },
-  getInitialState: () => {
-    return {
-      display: false
-    }
+    json: React.PropTypes.string.isRequired,
+    display: React.PropTypes.bool.isRequired,
+    displayHandler: React.PropTypes.func.isRequired
   },
   focusHandler() {
     console.log("focused!");
   },
   blurHandler() {
     console.log("blur!");
-    this.setState({
-      display: false
-    });
+    this.props.displayHandler(false);
   },
   clickHandler() {
     console.log("clicked!");
-    this.setState({
-      display: true
-    });
+    this.props.displayHandler(true);
   },
   render() {
     console.log("render csvtable!");
@@ -30,7 +23,7 @@ export default React.createClass({
     let display = true;
     if (rowCsv)
       display = false;
-    if (this.state.display)
+    if (this.props.display)
       display = true;
     const className = (display) ? "row-csv" : "row-csv _hidden" ;
 

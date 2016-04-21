@@ -5,15 +5,11 @@ export default React.createClass({
   },
   getInitialState: () => {
     return {
-      rowCsv: document.querySelector(".csv textarea").value,
       display: ""
     }
   },
   focusHandler() {
     console.log("focused!");
-    this.setState({
-      rowCsv: document.querySelector(".csv textarea").value
-    });
   },
   blurHandler() {
     console.log("blur!");
@@ -29,10 +25,10 @@ export default React.createClass({
   },
   render() {
     console.log("render csvtable!");
-    console.log(this.state.rowCsv);
+    const rowCsv = csvTo(this.props.json);
     const className = (this.state.display) ? "row-csv "+this.state.display : "row-csv" ;
 
-    const rows = $.csv.toArrays(this.state.rowCsv);
+    const rows = $.csv.toArrays(rowCsv);
     const header = rows.shift();
 
     const table = (() => {
@@ -76,7 +72,7 @@ export default React.createClass({
     return (
       <div className="csv-table">
         <textarea className={className} readOnly
-          value={this.state.rowCsv}
+          value={rowCsv}
           onFocus={this.focusHandler}
           onBlur={this.blurHandler}
         />

@@ -5,6 +5,7 @@ import CsvTable from "../components/csvtable";
 
 function mapStateToProps(state) {
   return {
+    json: state.json
   }
 }
 

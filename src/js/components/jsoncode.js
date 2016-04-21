@@ -2,23 +2,24 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
+    value: React.PropTypes.string.isRequired,
+    updateValueHandler: React.PropTypes.func.isRequired
   },
   getInitialState: () => {
     return {
-      json: {},
-      value: "",
       display: ""
     }
   },
   changeHandler(e) {
     console.log("changed!");
     const val = e.target.value;
-    this.setState({value: val});
+    this.props.updateValueHandler(val);
   },
   blurHandler(e) {
     console.log("blur!");
     const val = e.target.value;
-    this.setState({display: "_hidden", value: val});
+    this.props.updateValueHandler(val);
+    this.setState({display: "_hidden"});
   },
   focusHandler(e) {
     console.log("focus!");
@@ -51,13 +52,12 @@ export default React.createClass({
   },
   render() {
     console.log("render jsoncode!");
-    console.log(this.props.json);
-    const prettyJson = this.prettyJson(this.state.value);
+    const prettyJson = this.prettyJson(this.props.json);
     const className1 = (this.state.display) ? "row-json "+this.state.display : "row-json" ;
     const className2 = (!this.state.display) ? "pretty-json _hidden" : "pretty-json" ;
     return (
       <div className="json-code">
-        <textarea className={className1} value={this.state.value}
+        <textarea className={className1} value={this.props.value}
           onChange={this.changeHandler}
           onBlur={this.blurHandler}
           onPaste={this.pasteHandler}

@@ -3,6 +3,7 @@ import React from 'react';
 export default React.createClass({
   propTypes: {
     value: React.PropTypes.string.isRequired,
+    json: React.PropTypes.string.isRequired,
     updateValueHandler: React.PropTypes.func.isRequired
   },
   getInitialState: () => {

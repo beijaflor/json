@@ -2,6 +2,7 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
+    json: React.PropTypes.string.isRequired
   },
   getInitialState: () => {
     return {

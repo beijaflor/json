@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // load components
 import DropView from "./components/dropContainer";
 import CsvTableView from "./components/csvtable";
-import JsonCodeView from "./components/jsoncode";
+import JsonCodeView from "./components/jsoncodeContainer";
 
 // load action
 import * as actions from "./actions";

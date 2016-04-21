@@ -21,9 +21,7 @@ const App = React.createClass({
   },
   render() {
     return (
-      <div
-        onClick={ () => this.props.handleClick() }
-      >
+      <div>
         <div>{ this.props.hoge }</div>
         <DropView contentType="json" callBack={cb} />
         <JsonCodeView />
@@ -39,8 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dropJson: () => { dispatch(actions.setUpdateJson()) },
-    handleClick: () => { dispatch(actions.increment()) }
+    dropJson: () => { dispatch(actions.setUpdateJson()) }
   }
 }
 

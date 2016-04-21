@@ -1,5 +1,4 @@
 const initialState = {
-  hoge: "huge",
   json: "",
   jsoncode: {
     value: ""
@@ -8,11 +7,6 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
-    case "INCREMENT": {
-      return Object.assign({}, state,
-        { hoge: state.hoge + 1 }
-      );
-    }
     case "DROPJSON": {
       return Object.assign({}, state,
         { json: action.json, jsoncode: { value: action.json } }

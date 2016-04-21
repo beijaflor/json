@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import JsonCode from "../components/jsoncode.js";
+import JsonCode from "../components/jsoncode";
 import { updateJsonValueHandler, displayChanageHandler } from "../actions";
 
 function mapStateToProps(state) {

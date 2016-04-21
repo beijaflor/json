@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import DropContainer from "../components/drop.js";
+import DropContainer from "../components/drop";
 import { dropHandler, displayChanageHandler } from "../actions";
 
 function mapStateToProps(state) {

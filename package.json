@@ -4,9 +4,10 @@
   "description": "A simple JSON to CSV converter that handles objects and nested documents.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf build/js/*.js && webpack src/js/app.js build/js/bundle.js --module-bind 'js=babel-loader'",
-    "watch": "rm -rf build/js/*.js && webpack src/js/app.js build/js/bundle.js --module-bind 'js=babel-loader' -w",
+    "build": "rm -rf build/js/*.js && webpack src/js/app.babel.js build/js/bundle.js --module-bind 'js=babel-loader'",
+    "watch": "rm -rf build/js/*.js && webpack src/js/app.babel.js build/js/bundle.js --module-bind 'js=babel-loader' -w",
     "serve": "browser-sync start --server --files='build/js/*.js,*.html'",
+    "lint": "eslint ./src/js/**/*.babel.js; exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

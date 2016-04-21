@@ -2,23 +2,22 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
-  },
-  getInitialState: () => {
-    return {
-      json: {},
-      value: "",
-      display: ""
-    }
+    value: React.PropTypes.string.isRequired,
+    json: React.PropTypes.string.isRequired,
+    display: React.PropTypes.bool.isRequired,
+    updateValueHandler: React.PropTypes.func.isRequired,
+    displayHandler: React.PropTypes.func.isRequired
   },
   changeHandler(e) {
     console.log("changed!");
     const val = e.target.value;
-    this.setState({value: val});
+    this.props.updateValueHandler(val);
   },
   blurHandler(e) {
     console.log("blur!");
     const val = e.target.value;
-    this.setState({display: "_hidden", value: val});
+    this.props.updateValueHandler(val);
+    this.props.displayHandler(true);
   },
   focusHandler(e) {
     console.log("focus!");
@@ -33,11 +32,12 @@ export default React.createClass({
   },
   clickHandler(e) {
     console.log("click!");
-    this.setState({display: ""}, () => {
+    this.props.displayHandler(false)
+    window.setTimeout( () => {
       if(this.myTextInput !== null) {
         this.myTextInput.focus();
       }
-    });
+    }, 0);
   },
   prettyJson(str) {
     const json = jsonFrom(str);
@@ -50,13 +50,16 @@ export default React.createClass({
     return null;
   },
   render() {
-    console.log("render!");
-    const prettyJson = this.prettyJson(this.state.value);
-    const className1 = (this.state.display) ? "row-json "+this.state.display : "row-json" ;
-    const className2 = (!this.state.display) ? "pretty-json _hidden" : "pretty-json" ;
+    console.log("render jsoncode!");
+
+console.log(this.props.display)
+
+    const prettyJson = this.prettyJson(this.props.json);
+    const className1 = (this.props.display) ? "row-json _hidden" : "row-json" ;
+    const className2 = (!this.props.display) ? "pretty-json _hidden" : "pretty-json" ;
     return (
       <div className="json-code">
-        <textarea className={className1} value={this.state.value}
+        <textarea className={className1} value={this.props.value}
           onChange={this.changeHandler}
           onBlur={this.blurHandler}
           onPaste={this.pasteHandler}

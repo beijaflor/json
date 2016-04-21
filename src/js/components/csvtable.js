@@ -2,37 +2,32 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
-  },
-  getInitialState: () => {
-    return {
-      rowCsv: document.querySelector(".csv textarea").value,
-      display: ""
-    }
+    json: React.PropTypes.string.isRequired,
+    display: React.PropTypes.bool.isRequired,
+    displayHandler: React.PropTypes.func.isRequired
   },
   focusHandler() {
     console.log("focused!");
-    this.setState({
-      rowCsv: document.querySelector(".csv textarea").value
-    });
   },
   blurHandler() {
     console.log("blur!");
-    this.setState({
-      display: "_hidden"
-    });
+    this.props.displayHandler(false);
   },
   clickHandler() {
     console.log("clicked!");
-    this.setState({
-      display: ""
-    });
+    this.props.displayHandler(true);
   },
   render() {
-    console.log("render!");
-    console.log(this.state.rowCsv);
-    const className = (this.state.display) ? "row-csv "+this.state.display : "row-csv" ;
+    console.log("render csvtable!");
+    const rowCsv = csvTo(this.props.json);
+    let display = true;
+    if (rowCsv)
+      display = false;
+    if (this.props.display)
+      display = true;
+    const className = (display) ? "row-csv" : "row-csv _hidden" ;
 
-    const rows = $.csv.toArrays(this.state.rowCsv);
+    const rows = $.csv.toArrays(rowCsv);
     const header = rows.shift();
 
     const table = (() => {
@@ -76,7 +71,7 @@ export default React.createClass({
     return (
       <div className="csv-table">
         <textarea className={className} readOnly
-          value={this.state.rowCsv}
+          value={rowCsv}
           onFocus={this.focusHandler}
           onBlur={this.blurHandler}
         />

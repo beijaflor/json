@@ -155,3 +155,25 @@ function jsonFrom(input) {
 
   return result;
 }
+
+function csvTo(input) {
+  var string = $.trim(input);
+  if (!string) return "";
+
+  var json = null;
+  try {
+    json = JSON.parse(string);
+  } catch (err) {
+    console.log(err);
+  }
+
+  var inArray = arrayFrom(json);
+
+  var outArray = [];
+  for (var row in inArray)
+    outArray[outArray.length] = parse_object(inArray[row]);
+
+  var csv = $.csv.fromObjects(outArray);
+
+  return csv;
+}

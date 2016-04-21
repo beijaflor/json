@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // load components
 import DropView from "./components/dropContainer";
-import CsvTableView from "./components/csvtable";
+import CsvTableView from "./components/csvtableContainer";
 import JsonCodeView from "./components/jsoncodeContainer";
 
 // load action

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // load components
 import Instruction from "./components/instruction";
+import ErrorDialog from "./components/errorDialog";
 import DropView from "./components/dropContainer";
 import CsvTableView from "./components/csvtableContainer";
 import JsonCodeView from "./components/jsoncodeContainer";
@@ -21,6 +22,7 @@ const App = React.createClass({
       <div>
         <Instruction />
         <JsonCodeView />
+        <ErrorDialog />
         <CsvTableView />
         <DropView contentType="json" />
       </div>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // load components
 import Instruction from "./components/instructionContainer";
 import ErrorDialog from "./components/errorDialogContainer";
-import DownloadDialog from "./components/downloadDialog";
+import DownloadDialog from "./components/downloadDialogContainer";
 import DropView from "./components/dropContainer";
 import CsvTableView from "./components/csvtableContainer";
 import JsonCodeView from "./components/jsoncodeContainer";

@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Instruction from "../components/instruction";
+import DownloadDialog from "../components/downloadDialog";
 import { } from "../actions";
 
 function mapStateToProps(state) {
   return {
-    editing:  state.editing
+    editing:  state.editing,
+    rows: state.csvtable.rows
   }
 }
 
@@ -15,4 +16,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Instruction);
+export default connect(mapStateToProps, mapDispatchToProps)(DownloadDialog);

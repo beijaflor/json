@@ -7,7 +7,8 @@ const initialState = {
     value: ""
   },
   csvtable: {
-    display: false
+    display: false,
+    rows: 0
   }
 }
 

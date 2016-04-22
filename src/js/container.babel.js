@@ -21,11 +21,15 @@ const App = React.createClass({
   render() {
     return (
       <div>
-        <Instruction />
-        <JsonCodeView />
-        <ErrorDialog />
-        <DownloadDialog />
-        <CsvTableView />
+        <section>
+          <Instruction />
+          <JsonCodeView />
+          <ErrorDialog />
+        </section>
+        <section>
+          <DownloadDialog />
+          <CsvTableView />
+        </section>
         <DropView contentType="json" />
       </div>
     );

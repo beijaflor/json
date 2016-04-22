@@ -1,6 +1,7 @@
 const initialState = {
   json: "",
   editing: false,
+  error: false,
   jsoncode: {
     display: true,
     value: ""

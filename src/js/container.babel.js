@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // load components
-import Instruction from "./components/instruction";
+import Instruction from "./components/instructionContainer";
 import ErrorDialog from "./components/errorDialog";
 import DownloadDialog from "./components/downloadDialog";
 import DropView from "./components/dropContainer";

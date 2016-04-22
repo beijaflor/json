@@ -1,5 +1,6 @@
 const initialState = {
   json: "",
+  editing: false,
   jsoncode: {
     display: true,
     value: ""
@@ -15,6 +16,18 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state,
         { json: action.json, jsoncode: { value: action.json } }
       );
+    }
+    case "EDITING": {
+      console.log("update editing");
+      console.log(`action flag: ${action.flag}`)
+      console.log(`state.editing: ${state.editing}`)
+      if ( action.flag === state.editing ) {
+        return state;
+      } else {
+        return Object.assign({}, state,
+          { editing: action.flag }
+        );
+      }
     }
     case "DISPLAY_CHANGE": {
       let obj = {};

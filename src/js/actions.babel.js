@@ -9,3 +9,7 @@ export const updateJsonValueHandler = (value) => {
 export const displayChanageHandler = (target, bool) => {
   return { type: 'DISPLAY_CHANGE', target: target, display: bool };
 };
+
+export const updateEditingAction = (bool) => {
+  return { type: 'EDITING', flag: bool };
+};

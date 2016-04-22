@@ -6,7 +6,8 @@ export default React.createClass({
     json: React.PropTypes.string.isRequired,
     display: React.PropTypes.bool.isRequired,
     updateValueHandler: React.PropTypes.func.isRequired,
-    displayHandler: React.PropTypes.func.isRequired
+    displayHandler: React.PropTypes.func.isRequired,
+    editingHandler: React.PropTypes.func.isRequired
   },
   changeHandler(e) {
     console.log("changed!");
@@ -18,6 +19,7 @@ export default React.createClass({
     const val = e.target.value;
     this.props.updateValueHandler(val);
     this.props.displayHandler(true);
+    this.props.editingHandler(false);
   },
   focusHandler(e) {
     console.log("focus!");
@@ -36,6 +38,7 @@ export default React.createClass({
     window.setTimeout( () => {
       if(this.myTextInput !== null) {
         this.myTextInput.focus();
+        this.props.editingHandler(true);
       }
     }, 0);
   },

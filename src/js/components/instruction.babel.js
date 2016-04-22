@@ -1,16 +1,17 @@
 import React from 'react';
 
 export default React.createClass({
+  propTypes: {
+    editing: React.PropTypes.bool.isRequired
+  },
   render() {
+    const Instruction = (this.props.editing)
+      ? "Paste your JSON below."
+      : "Click your JSON below to edit.";
+
     return (
       <p>
-        <span className="instruction editing">
-          Paste your JSON below.
-        </span>
-
-        <span className="instruction rendered">
-          Click your JSON below to edit.
-        </span>
+        <span className="instruction">{Instruction}</span>
 
         <span className="save">
           <a href="#">Create a permalink</a> any time.

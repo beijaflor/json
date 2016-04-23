@@ -25,9 +25,10 @@ export default function reducer(state = initialState, action) {
       if ( action.rows === state.csvtable.rows ) {
         return state;
       } else {
+        const csvtable = Object.assign({}, state.csvtable,
+          { rows: action.rows });
         return Object.assign({}, state,
-          { csvtable: { rows: action.rows } }
-        );
+          { csvtable: csvtable });
       }
     }
     case "EDITING": {

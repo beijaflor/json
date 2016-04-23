@@ -8,6 +8,17 @@ export default React.createClass({
     displayHandler: React.PropTypes.func.isRequired,
     updateRowsHandler: React.PropTypes.func.isRequired
   },
+  componentDidUpdate() {
+    console.log("updated");
+    if(this.props.display) {
+      window.setTimeout( () => {
+        if(this.myTextInput !== null) {
+          this.myTextInput.focus();
+          this.myTextInput.select();
+        }
+      }, 0);
+    }
+  },
   focusHandler() {
     console.log("focused!");
   },
@@ -78,6 +89,7 @@ export default React.createClass({
           value={rowCsv}
           onFocus={this.focusHandler}
           onBlur={this.blurHandler}
+          ref={(ref) => this.myTextInput = ref}
         />
         {table}
       </div>

@@ -20,7 +20,7 @@ export default React.createClass({
               )
             }
           })()}
-          <a download="result.csv" href="#" className="download">Download the entire CSV</a>, or <a href="#" className="raw">show the raw data</a>.
+          <a download="result.csv" href="#" className="download">Download the entire CSV</a>, or <a href="#" className="raw"  onClick={this.props.showRowCsvtableHandler}>show the raw data</a>.
         </p>
       );
     }

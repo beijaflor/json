@@ -29,7 +29,6 @@
 <script src="assets/highlight.pack.js"></script>
 
 <script>
-  var excerptRows = 7;
   var input;
   var url;
   var lastSaved;
@@ -49,11 +48,6 @@
   }
 
   function doCSV(json) {
-    $("span.rows.count").text("" + outArray.length);
-
-    // excerpt and render first 10 rows
-    renderCSV(outArray.slice(0, excerptRows));
-
     // thanks to https://jsfiddle.net/terryyounghk/KPEGU/
     // and https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
     var uri = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);

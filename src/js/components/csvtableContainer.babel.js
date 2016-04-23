@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CsvTable from "../components/csvtable";
-import { displayChanageHandler } from "../actions";
+import { displayChanageHandler, updateRowsAction } from "../actions";
 
 function mapStateToProps(state) {
   return {
@@ -13,7 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    displayHandler: (bool) => { dispatch(displayChanageHandler("csvtable", bool)) }
+    displayHandler: (bool) => { dispatch(displayChanageHandler("csvtable", bool)) },
+    updateRowsHandler: (rows) => { dispatch(updateRowsAction(rows)) }
   }
 }
 

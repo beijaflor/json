@@ -8,7 +8,8 @@ const initialState = {
   },
   csvtable: {
     display: false,
-    rows: 0
+    rows: 0,
+    rowcsv: ""
   }
 }
 
@@ -18,6 +19,16 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state,
         { json: action.json, jsoncode: { value: action.json } }
       );
+    }
+    case "UPDATE_ROWS": {
+      console.log(action.rows)
+      if ( action.rows === state.csvtable.rows ) {
+        return state;
+      } else {
+        return Object.assign({}, state,
+          { csvtable: { rows: action.rows } }
+        );
+      }
     }
     case "EDITING": {
       console.log("update editing");

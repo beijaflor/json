@@ -13,3 +13,7 @@ export const displayChanageHandler = (target, bool) => {
 export const updateEditingAction = (bool) => {
   return { type: 'EDITING', flag: bool };
 };
+
+export const updateRowsAction = (rows) => {
+  return { type: 'UPDATE_ROWS', rows: rows };
+};

@@ -7,7 +7,8 @@ import { showRowCsvtableAction } from "../actions";
 function mapStateToProps(state) {
   return {
     editing:  state.editing,
-    rows: state.csvtable.rows
+    rows: state.csvtable.rows,
+    csv: state.csvtable.rowcsv
   }
 }
 

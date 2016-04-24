@@ -16,10 +16,13 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case "DROPJSON": {
+      const rowcsv = csvTo(action.json);
       const jsoncode = Object.assign({}, state.jsoncode,
         { value: action.json });
+      const csvtable = Object.assign({}, state.csvtable,
+        { rowcsv: rowcsv });
       return Object.assign({}, state,
-        { json: action.json, jsoncode: jsoncode }
+        { json: action.json, jsoncode: jsoncode, csvtable: csvtable }
       );
     }
     case "UPDATE_ROWS": {
@@ -55,8 +58,13 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, obj);
     }
     case "UPDATE_JSON_VALUE": {
+      const rowcsv = csvTo(action.value);
+      const jsoncode = Object.assign({}, state.jsoncode,
+        { value: action.value });
+      const csvtable = Object.assign({}, state.csvtable,
+        { rowcsv: rowcsv });
       return Object.assign({}, state,
-        { json: action.value, jsoncode: { value: action.value } }
+        { json: action.value, jsoncode: jsoncode, csvtable: csvtable }
       );
     }
     default:

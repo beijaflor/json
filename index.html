@@ -39,13 +39,6 @@
     return true;
   }
 
-  function doCSV(json) {
-    // thanks to https://jsfiddle.net/terryyounghk/KPEGU/
-    // and https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
-    var uri = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
-    $(".csv a.download").attr("href", uri);
-  }
-
   function saveJSON() {
     // loads original pasted JSON from textarea, saves to anonymous gist
     // rate-limiting means this could easily fail with a 403.
@@ -189,14 +182,6 @@
 
     // Both elements are present on page-load, so use normal click handler.
     $(".save a, .error a.save").click(saveJSON);
-
-    // go away
-    $("body").click(function() {
-      $(".drop").hide();
-    });
-
-    // highlight CSV on click
-    $(".csv textarea").click(function() {$(this).focus().select();});
 
     loadPermalink();
   });

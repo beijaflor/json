@@ -43,6 +43,10 @@ export default React.createClass({
     }, 0);
   },
   prettyJson(str) {
+    if (str == "") {
+      this.props.jsonErrorHandler(false);
+      return null;
+    }
     const json = jsonFrom(str);
     if (json) {
       this.props.jsonErrorHandler(false);

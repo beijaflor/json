@@ -5,6 +5,7 @@ export default React.createClass({
     error: React.PropTypes.bool.isRequired
   },
   render() {
+    console.log("render errorDialog")
     if (this.props.error) {
       return (
         <div className="error">

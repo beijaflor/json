@@ -1,10 +1,23 @@
 import React from 'react';
 
 export default React.createClass({
+  excerptRows: 7,
   propTypes: {
     json: React.PropTypes.string.isRequired,
     display: React.PropTypes.bool.isRequired,
-    displayHandler: React.PropTypes.func.isRequired
+    displayHandler: React.PropTypes.func.isRequired,
+    updateRowsHandler: React.PropTypes.func.isRequired
+  },
+  componentDidUpdate() {
+    console.log("updated");
+    if(this.props.display) {
+      window.setTimeout( () => {
+        if(this.myTextInput !== null) {
+          this.myTextInput.focus();
+          this.myTextInput.select();
+        }
+      }, 0);
+    }
   },
   focusHandler() {
     console.log("focused!");
@@ -29,16 +42,18 @@ export default React.createClass({
 
     const rows = $.csv.toArrays(rowCsv);
     const header = rows.shift();
+    this.props.updateRowsHandler(rows.length);
 
+    const excerpted = rows.slice(0, this.excerptRows);
     const table = (() => {
-      if (rows.length > 0) {
+      if (excerpted.length > 0) {
         const headerNodes = header.map((col) => {
           return (
             <th key={col}>{col}</th>
           );
         });
 
-        const rowNodes = rows.map((row) => {
+        const rowNodes = excerpted.map((row) => {
           const cellNodes = row.map((cell) => {
             return (
               <td>{cell}</td>
@@ -74,6 +89,7 @@ export default React.createClass({
           value={rowCsv}
           onFocus={this.focusHandler}
           onBlur={this.blurHandler}
+          ref={(ref) => this.myTextInput = ref}
         />
         {table}
       </div>

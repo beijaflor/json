@@ -9,3 +9,19 @@ export const updateJsonValueHandler = (value) => {
 export const displayChanageHandler = (target, bool) => {
   return { type: 'DISPLAY_CHANGE', target: target, display: bool };
 };
+
+export const updateEditingAction = (bool) => {
+  return { type: 'EDITING', flag: bool };
+};
+
+export const updateRowsAction = (rows) => {
+  return { type: 'UPDATE_ROWS', rows: rows };
+};
+
+export const showRowCsvtableAction = () => {
+  return { type: 'DISPLAY_CHANGE', target: "csvtable", display: true };
+};
+
+export const jsonErrorAction = (bool) => {
+  return { type: 'ERROR', flag: bool };
+};

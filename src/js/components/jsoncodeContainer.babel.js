@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import JsonCode from "../components/jsoncode";
-import { updateJsonValueHandler, displayChanageHandler } from "../actions";
+import { updateJsonValueHandler, displayChanageHandler, updateEditingAction, jsonErrorAction } from "../actions";
 
 function mapStateToProps(state) {
   return {
@@ -15,7 +15,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     updateValueHandler: (value) => { dispatch(updateJsonValueHandler(value)) },
-    displayHandler: (bool) => { dispatch(displayChanageHandler("jsoncode", bool)) }
+    displayHandler: (bool) => { dispatch(displayChanageHandler("jsoncode", bool)) },
+    editingHandler: (bool) => { dispatch(updateEditingAction(bool)) },
+    jsonErrorHandler: (bool) => { console.log(`errorflag: ${bool}`);dispatch(jsonErrorAction(bool)) }
   }
 }
 

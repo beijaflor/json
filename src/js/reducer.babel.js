@@ -16,8 +16,10 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case "DROPJSON": {
+      const jsoncode = Object.assign({}, state.jsoncode,
+        { value: action.json });
       return Object.assign({}, state,
-        { json: action.json, jsoncode: { value: action.json } }
+        { json: action.json, jsoncode: jsoncode }
       );
     }
     case "UPDATE_ROWS": {
@@ -31,10 +33,13 @@ export default function reducer(state = initialState, action) {
           { csvtable: csvtable });
       }
     }
+    case "ERROR": {
+      return Object.assign({}, state,
+        { error: action.flag }
+      );
+    }
     case "EDITING": {
       console.log("update editing");
-      console.log(`action flag: ${action.flag}`)
-      console.log(`state.editing: ${state.editing}`)
       if ( action.flag === state.editing ) {
         return state;
       } else {

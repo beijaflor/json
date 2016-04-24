@@ -34,14 +34,6 @@
   var lastSaved;
 
   function doJSON() {
-    if (json) {
-      // Reset any error message from previous failed parses.
-      $("div.error").hide();
-      $("div.warning").show();
-    } else {
-      $("div.warning").hide();
-      $("div.error").show();
-    }
     // Either way, update the error-reporting link to include the latest.
     setErrorReporting(null, input);
     return true;

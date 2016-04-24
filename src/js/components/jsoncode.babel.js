@@ -44,19 +44,19 @@ export default React.createClass({
   },
   prettyJson(str) {
     const json = jsonFrom(str);
-    if(json) {
+    if (json) {
+      this.props.jsonErrorHandler(false);
       const pretty = JSON.stringify(json, undefined, 2);
       if (pretty.length < (50 * 1024)) {
         return hljs.highlightAuto(pretty).value;
       }
+    } else {
+      this.props.jsonErrorHandler(true);
     }
     return null;
   },
   render() {
     console.log("render jsoncode!");
-
-console.log(this.props.display)
-
     const prettyJson = this.prettyJson(this.props.json);
     const className1 = (this.props.display) ? "row-json _hidden" : "row-json" ;
     const className2 = (!this.props.display) ? "pretty-json _hidden" : "pretty-json" ;

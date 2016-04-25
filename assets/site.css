@@ -105,6 +105,24 @@ section {
 /* COMPONENT */
 
 /* ---------------------------- */
+/* /src/js/component/nav */
+
+.inline-tab {
+  margin: 1em 0;
+  padding: 0;
+}
+.inline-tab > .item {
+  display: inline-block;
+  list-style: none;
+  padding: 0 1em;
+  margin: 0;
+  border-right: 1px solid gray;
+}
+.inline-tab > .item:last-child {
+  border-right: 0;
+}
+
+/* ---------------------------- */
 /* /src/js/component/drop */
 
 .drop-modal {

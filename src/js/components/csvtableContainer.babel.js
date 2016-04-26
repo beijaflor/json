@@ -7,6 +7,7 @@ import { displayChanageHandler, updateRowsAction } from "../actions";
 function mapStateToProps(state) {
   return {
     json: state.json,
+    rowcsv: state.csvtable.rowcsv,
     display: state.csvtable.display
   }
 }

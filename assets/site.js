@@ -177,3 +177,8 @@ function csvTo(input) {
 
   return csv;
 }
+
+function csvFrom(input) {
+  console.log("CSV:", input)
+  return '[{"a":"b"},{"c":"d"}]';
+}

@@ -23,12 +23,12 @@ const App = React.createClass({
       <div>
         <section>
           <Instruction />
-          <JsonCodeView />
+          <CsvTableView />
           <ErrorDialog />
         </section>
         <section>
           <DownloadDialog />
-          <CsvTableView />
+          <JsonCodeView />
         </section>
         <DropView contentType="csv" />
       </div>

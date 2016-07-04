@@ -193,3 +193,19 @@ function csvFrom(input) {
   console.log("json", result)
   return JSON.stringify(result);
 }
+
+function digObject(obj, value, list) {
+  if( list.length === 0 ) {
+    return obj = value;
+  }
+  const key = list.shift();
+  let target;
+  if(obj.hasOwnProperty(key)) {
+    target = obj[key];
+  } else {
+    target = {};
+  }
+  target = digObject(target, value, list);
+  obj[key] = target;
+  return obj;
+}

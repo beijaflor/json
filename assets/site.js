@@ -179,6 +179,17 @@ function csvTo(input) {
 }
 
 function csvFrom(input) {
-  console.log("CSV:", input)
-  return '[{"a":"b"},{"c":"d"}]';
+  const rows = input.split("\n");
+  let result = [];
+  const header = rows[0].split(",");
+  for (let i = 1; i < rows.length; i++) {
+    const obj = {};
+    const current = rows[i].split(",");
+    for (let i = 0; i < header.length; i++) {
+      obj[header[i]] = current[i];
+    }
+    result.push(obj);
+  }
+  console.log("json", result)
+  return JSON.stringify(result);
 }

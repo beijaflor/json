@@ -52,10 +52,12 @@ export default function reducer(state = initialState, action) {
       }
     }
     case "DISPLAY_CHANGE": {
-      let obj = {};
-      obj[action.target] = {};
-      obj[action.target].display = action.display;
-      return Object.assign({}, state, obj);
+      let target = {};
+      const display = Object.assign({}, state[action.target],
+        { display: action.display });
+      target[action.target] = display;
+      const ret = Object.assign({}, state, target);
+      return ret;
     }
     case "UPDATE_JSON_VALUE": {
       const rowcsv = csvTo(action.value);
@@ -65,6 +67,16 @@ export default function reducer(state = initialState, action) {
         { rowcsv: rowcsv });
       return Object.assign({}, state,
         { json: action.value, jsoncode: jsoncode, csvtable: csvtable }
+      );
+    }
+    case "UPDATE_CSV_VALUE": {
+      const json = csvFrom(action.value);
+      const jsoncode = Object.assign({}, state.jsoncode,
+        { value: json });
+      const csvtable = Object.assign({}, state.csvtable,
+        { rowcsv: action.value });
+      return Object.assign({}, state,
+        { json: json, jsoncode: jsoncode, csvtable: csvtable }
       );
     }
     default:

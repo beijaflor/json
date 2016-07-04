@@ -6,6 +6,10 @@ export const updateJsonValueHandler = (value) => {
   return { type: 'UPDATE_JSON_VALUE', value: value };
 };
 
+export const updateCsvValueAction = (value) => {
+  return { type: 'UPDATE_CSV_VALUE', value: value };
+};
+
 export const displayChanageHandler = (target, bool) => {
   return { type: 'DISPLAY_CHANGE', target: target, display: bool };
 };

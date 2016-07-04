@@ -32,7 +32,7 @@ export default React.createClass({
   },
   render() {
     console.log("render csvtable!");
-    const rowCsv = csvTo(this.props.json);
+    const rowCsv = this.props.rowcsv;
     let display = true;
     if (rowCsv)
       display = false;

@@ -177,3 +177,35 @@ function csvTo(input) {
 
   return csv;
 }
+
+function csvFrom(input) {
+  const rows = input.split(/\r\n|\r|\n/);
+  let result = [];
+  const header = rows[0].split(",");
+  for (let i = 1; i < rows.length; i++) {
+    let obj = {};
+    const current = rows[i].split(",");
+    for (let i = 0; i < header.length; i++) {
+      obj = digObject(obj, current[i], header[i].split("/"));
+    }
+    result.push(obj);
+  }
+  console.log("json", result)
+  return JSON.stringify(result);
+}
+
+function digObject(obj, value, list) {
+  if( list.length === 0 ) {
+    return obj = value;
+  }
+  const key = list.shift();
+  let target;
+  if(obj.hasOwnProperty(key)) {
+    target = obj[key];
+  } else {
+    target = {};
+  }
+  target = digObject(target, value, list);
+  obj[key] = target;
+  return obj;
+}

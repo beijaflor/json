@@ -183,10 +183,10 @@ function csvFrom(input) {
   let result = [];
   const header = rows[0].split(",");
   for (let i = 1; i < rows.length; i++) {
-    const obj = {};
+    let obj = {};
     const current = rows[i].split(",");
     for (let i = 0; i < header.length; i++) {
-      obj[header[i]] = current[i];
+      obj = digObject(obj, current[i], header[i].split("/"));
     }
     result.push(obj);
   }

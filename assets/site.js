@@ -179,7 +179,7 @@ function csvTo(input) {
 }
 
 function csvFrom(input) {
-  const rows = input.split("\n");
+  const rows = input.split(/\r\n|\r|\n/);
   let result = [];
   const header = rows[0].split(",");
   for (let i = 1; i < rows.length; i++) {

@@ -169,16 +169,6 @@
 
   $(function() {
 
-    $(".csv a.download").click(function() {
-      // if there's no CSV to download, don't download anything.
-      // also, log an analytics event.
-      var data = $(".csv textarea").val();
-      if (data) {
-        Events.download(data.length);
-        return true;
-      } else
-        return false;
-    });
 
     // Both elements are present on page-load, so use normal click handler.
     $(".save a, .error a.save").click(saveJSON);

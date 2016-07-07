@@ -6,9 +6,11 @@ import { showRowCsvtableAction } from "../actions";
 
 function mapStateToProps(state) {
   return {
+    contentType: state.contentType,
     editing:  state.editing,
     rows: state.csvtable.rows,
-    csv: state.csvtable.rowcsv
+    csv: state.csvtable.rowcsv,
+    json: state.json
   }
 }
 

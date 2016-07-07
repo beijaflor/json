@@ -189,6 +189,9 @@ function csvFrom(input) {
     let obj = {};
     const current = rows[i].split(",");
     for (let i = 0; i < header.length; i++) {
+      if(current[i] === "") {
+        continue;
+      }
       obj = digObject(obj, current[i], header[i].split("/"));
     }
     result.push(obj);

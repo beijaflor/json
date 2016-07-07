@@ -183,6 +183,9 @@ function csvFrom(input) {
   let result = [];
   const header = rows[0].split(",");
   for (let i = 1; i < rows.length; i++) {
+    if(rows[i] === "") {
+      continue;
+    }
     let obj = {};
     const current = rows[i].split(",");
     for (let i = 0; i < header.length; i++) {

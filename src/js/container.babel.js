@@ -30,13 +30,14 @@ const App = React.createClass({
           <DownloadDialog />
           <CsvTableView />
         </section>
-        <DropView contentType="json" />
+        <DropView />
       </div>
     );
   }
 });
 
 function mapStateToProps(state) {
+  state.contentType = "json";
   return state;
 }
 

@@ -1,4 +1,5 @@
 const initialState = {
+  contentType: "json",
   json: "",
   editing: false,
   error: false,

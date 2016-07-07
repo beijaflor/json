@@ -44,7 +44,7 @@ export default React.createClass({
 
         const reader = new FileReader();
         reader.onload = (ev) => {
-          this.props.dropHandler(ev.target.result);
+          this.props.dropHandler(this.props.contentType, ev.target.result);
         };
         reader.readAsText(e.dataTransfer.files[0]);
       }

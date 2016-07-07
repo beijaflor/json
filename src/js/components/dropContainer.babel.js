@@ -9,18 +9,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch, props) {
-  const contentType = props.contentType;
-  if (contentType && contentType === "csv") {
-    return {
-      dropHandler: (csv) => {
-        dispatch(updateCsvValueAction(csv));
-        // dispatch(displayChanageHandler("jsoncode", true));
-      }
-    }
-  } else {
-    return {
-      dropHandler: (json) => {
-        dispatch(dropHandler(json));
+  return {
+    dropHandler: (contentType, data) => {
+      if (contentType === "csv" ) {
+        dispatch(updateCsvValueAction(data));
+      // dispatch(displayChanageHandler("jsoncode", true));
+      } else {
+        dispatch(dropHandler(data));
         dispatch(displayChanageHandler("jsoncode", true));
       }
     }

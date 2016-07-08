@@ -228,18 +228,22 @@ function convertNumHash2ArrayInMap(obj) {
 }
 
 function checkIsNumHash(obj) {
-  const keys = Object.keys(obj);
-  const ret = keys.reduce(
-    function(flag, key) {
-      if (flag) {
-        if (parseInt(key)) {
-          return true;
+  if (typeof obj === "object" && obj !== null) {
+    const keys = Object.keys(obj);
+    const ret = keys.reduce(
+      function(flag, key) {
+        if (flag) {
+          if (isNaN(parseInt(key))) {
+            return false;
+          } else {
+            return true;
+          }
         } else {
           return false;
         }
-      } else {
-        return false;
-      }
-    }, true);
-  return ret;
+      }, true);
+    return ret;
+  } else {
+    return false;
+  }
 }

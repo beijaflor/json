@@ -194,6 +194,7 @@ function csvFrom(input) {
       }
       obj = digObject(obj, current[i], header[i].split("/"));
     }
+    obj = convertNumHash2ArrayInMap(obj);
     result.push(obj);
   }
   console.log("json", result)
@@ -214,4 +215,31 @@ function digObject(obj, value, list) {
   target = digObject(target, value, list);
   obj[key] = target;
   return obj;
+}
+
+function convertNumHash2ArrayInMap(obj) {
+  for (let key in obj) {
+    if (checkIsNumHash(obj[key])) {
+      let numHash = obj[key];
+      obj[key] = Object.keys(numHash).map(key => numHash[key]);
+    }
+  }
+  return obj;
+}
+
+function checkIsNumHash(obj) {
+  const keys = Object.keys(obj);
+  const ret = keys.reduce(
+    function(flag, key) {
+      if (flag) {
+        if (parseInt(key)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }, true);
+  return ret;
 }

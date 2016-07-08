@@ -232,18 +232,14 @@ function checkIsNumHash(obj) {
     const keys = Object.keys(obj);
     const ret = keys.reduce(
       function(flag, key) {
-        if (flag) {
-          if (isNaN(parseInt(key))) {
-            return false;
-          } else {
-            return true;
-          }
-        } else {
-          return false;
-        }
+        return (!flag) ?
+               false :
+               (isNaN(parseInt(key))) ?
+                 false :
+                 true;
       }, true);
     return ret;
-  } else {
-    return false;
   }
+
+  return false;
 }

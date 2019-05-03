@@ -14,7 +14,7 @@ export default React.createClass({
     const contentType = `data:text/${contentName};charset=utf-8`;
     const filename = "result." + type;
 
-    if (this.props.editing) {
+    if (this.props.editing && this.props.contentType === "json") {
       return (
         <p>Your {contentName} will appear below as a table.</p>
       );

@@ -6,6 +6,7 @@ import { } from "../actions";
 
 function mapStateToProps(state) {
   return {
+    contentType: state.contentType,
     editing:  state.editing
   }
 }

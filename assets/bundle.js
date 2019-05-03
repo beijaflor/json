@@ -112,7 +112,8 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: "/", component: App },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _container2.default }),
+	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: "/json" }),
+	      _react2.default.createElement(_reactRouter.Route, { path: "/json", component: _container2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: "/csv", component: _container4.default })
 	    )
 	  )
@@ -30155,6 +30156,7 @@
 
 	function mapStateToProps(state) {
 	  return {
+	    contentType: state.contentType,
 	    editing: state.editing
 	  };
 	}
@@ -30169,7 +30171,7 @@
 /* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -30182,52 +30184,22 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: "instruction.babel",
+	  displayName: 'instruction.babel',
 
 	  propTypes: {
+	    contentType: _react2.default.PropTypes.string.isRequired,
 	    editing: _react2.default.PropTypes.bool.isRequired
 	  },
 	  render: function render() {
-	    var Instruction = this.props.editing ? "Paste your JSON below." : "Click your JSON below to edit.";
+	    var Instruction = this.props.contentType === 'json' ? this.props.editing ? 'Paste your JSON.' : 'Click JSON below to edit.' : 'Click your CSV below to show the raw data.'; // apparently csv
 
 	    return _react2.default.createElement(
-	      "p",
+	      'p',
 	      null,
 	      _react2.default.createElement(
-	        "span",
-	        { className: "instruction" },
+	        'span',
+	        { className: 'instruction' },
 	        Instruction
-	      ),
-	      _react2.default.createElement(
-	        "span",
-	        { className: "save" },
-	        _react2.default.createElement(
-	          "a",
-	          { href: "#" },
-	          "Create a permalink"
-	        ),
-	        " any time."
-	      ),
-	      _react2.default.createElement(
-	        "span",
-	        null,
-	        "Please ",
-	        _react2.default.createElement(
-	          "a",
-	          { target: "_blank", href: "https://github.com/konklone/json/issues" },
-	          "report bugs and send feedback"
-	        ),
-	        " on GitHub."
-	      ),
-	      _react2.default.createElement(
-	        "span",
-	        null,
-	        "Made by ",
-	        _react2.default.createElement(
-	          "a",
-	          { href: "https://twitter.com/konklone" },
-	          "@konklone."
-	        )
 	      )
 	    );
 	  }
@@ -30264,10 +30236,6 @@
 
 	var updateRowsAction = exports.updateRowsAction = function updateRowsAction(rows) {
 	  return { type: 'UPDATE_ROWS', rows: rows };
-	};
-
-	var showRowCsvtableAction = exports.showRowCsvtableAction = function showRowCsvtableAction() {
-	  return { type: 'DISPLAY_CHANGE', target: "csvtable", display: true };
 	};
 
 	var jsonErrorAction = exports.jsonErrorAction = function jsonErrorAction(bool) {
@@ -30384,8 +30352,6 @@
 
 	var _downloadDialog2 = _interopRequireDefault(_downloadDialog);
 
-	var _actions = __webpack_require__(282);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
@@ -30398,15 +30364,7 @@
 	  };
 	}
 
-	function mapDispatchToProps(dispatch) {
-	  return {
-	    showRowCsvtableHandler: function showRowCsvtableHandler() {
-	      dispatch((0, _actions.showRowCsvtableAction)());
-	    }
-	  };
-	}
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_downloadDialog2.default);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, {})(_downloadDialog2.default);
 
 /***/ },
 /* 286 */
@@ -30442,7 +30400,7 @@
 	    var contentType = "data:text/" + contentName + ";charset=utf-8";
 	    var filename = "result." + type;
 
-	    if (this.props.editing) {
+	    if (this.props.editing && this.props.contentType === "json") {
 	      return _react2.default.createElement(
 	        "p",
 	        null,
@@ -30483,13 +30441,7 @@
 	          "Download the entire ",
 	          contentName
 	        ),
-	        ", or ",
-	        _react2.default.createElement(
-	          "a",
-	          { href: "#", className: "raw", onClick: this.props.showRowCsvtableHandler },
-	          "show the raw data"
-	        ),
-	        "."
+	        ", or click field to show the raw data."
 	      );
 	    } else {
 	      return _react2.default.createElement("p", null);
@@ -31098,7 +31050,7 @@
 	          { className: "item" },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: "/" },
+	            { activeClassName: "is-active", to: "/json" },
 	            "JSON to CSV"
 	          )
 	        ),
@@ -31107,7 +31059,7 @@
 	          { className: "item" },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: "/csv" },
+	            { activeClassName: "is-active", to: "/csv" },
 	            "CSV to JSON"
 	          )
 	        )

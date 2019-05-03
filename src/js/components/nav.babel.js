@@ -6,8 +6,8 @@ export default React.createClass({
     return (
       <nav>
         <ul className="inline-tab">
-          <li className="item"><Link to="/">JSON to CSV</Link></li>
-          <li className="item"><Link to="/csv">CSV to JSON</Link></li>
+          <li className="item"><Link activeClassName='is-active' to="/json">JSON to CSV</Link></li>
+          <li className="item"><Link activeClassName='is-active' to="/csv">CSV to JSON</Link></li>
         </ul>
       </nav>
     );

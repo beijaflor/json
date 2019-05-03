@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { IndexRoute, Router, Route, hashHistory, useRouterHistory } from "react-router";
+import { IndexRedirect, Router, Route, hashHistory, useRouterHistory } from "react-router";
 import { createHashHistory } from "history";
 
 // setup redux
@@ -32,7 +32,8 @@ ReactDOM.render(
   <Provider store={ store }>
     <Router history={ history }>
       <Route path="/" component={ App }>
-        <IndexRoute component={ container } />
+        <IndexRedirect to="/json" />
+        <Route path="/json" component={ container } />
         <Route path="/csv" component={ container2 } />
       </Route>
     </Router>

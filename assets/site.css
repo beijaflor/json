@@ -201,3 +201,9 @@ section {
 ._hidden {
   display: none !important;
 }
+
+nav a.is-active {
+  color: dimgray;
+  text-decoration: underline;
+  font-weight: bold;
+}

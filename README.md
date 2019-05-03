@@ -1,13 +1,16 @@
-## JSON to CSV Converter
+## React version of JSON and CSV Converter
 
-A simple JSON to CSV converter that handles objects and nested documents.
+A simple JSON and CSV converter that handles objects and nested documents.
 
 Conversion happens inside the browser, in straight JavaScript. It may choke on large files.
 
-Please file all bugs [in the issue tracker](https://github.com/konklone/json/issues).
+This application, not like original version, has a function to convert from CSV to JSON.
 
-Read more about the converter and why I built it: "[Making JSON as simple as a spreadsheet](http://sunlightfoundation.com/blog/2014/03/11/making-json-as-simple-as-a-spreadsheet/)".
+First raw would take as a header and array ( would be ) field suffixed by `/INT`.
 
+## Credit
+
+This web application was folked from [JSON to CSV converter by Eric Mill](https://github.com/konklone/json/issues).
 
 ## Public domain
 

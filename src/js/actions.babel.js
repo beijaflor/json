@@ -22,10 +22,6 @@ export const updateRowsAction = (rows) => {
   return { type: 'UPDATE_ROWS', rows: rows };
 };
 
-export const showRowCsvtableAction = () => {
-  return { type: 'DISPLAY_CHANGE', target: "csvtable", display: true };
-};
-
 export const jsonErrorAction = (bool) => {
   return { type: 'ERROR', flag: bool };
 };

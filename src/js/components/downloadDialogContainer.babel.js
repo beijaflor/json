@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import DownloadDialog from "../components/downloadDialog";
-import { showRowCsvtableAction } from "../actions";
 
 function mapStateToProps(state) {
   return {
@@ -14,10 +13,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    showRowCsvtableHandler: () => { dispatch(showRowCsvtableAction()) }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DownloadDialog);
+export default connect(mapStateToProps, {})(DownloadDialog);

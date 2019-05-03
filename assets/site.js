@@ -155,3 +155,91 @@ function jsonFrom(input) {
 
   return result;
 }
+
+function csvTo(input) {
+  var string = $.trim(input);
+  if (!string) return "";
+
+  var json = null;
+  try {
+    json = JSON.parse(string);
+  } catch (err) {
+    console.log(err);
+  }
+
+  var inArray = arrayFrom(json);
+
+  var outArray = [];
+  for (var row in inArray)
+    outArray[outArray.length] = parse_object(inArray[row]);
+
+  var csv = $.csv.fromObjects(outArray);
+
+  return csv;
+}
+
+function csvFrom(input) {
+  const rows = input.split(/\r\n|\r|\n/);
+  let result = [];
+  const header = rows[0].split(",");
+  for (let i = 1; i < rows.length; i++) {
+    if(rows[i] === "") {
+      continue;
+    }
+    let obj = {};
+    const current = rows[i].split(",");
+    for (let i = 0; i < header.length; i++) {
+      if(current[i] === "") {
+        continue;
+      }
+      obj = digObject(obj, current[i], header[i].split("/"));
+    }
+    obj = convertNumHash2ArrayInMap(obj);
+    result.push(obj);
+  }
+  console.log("json", result)
+  return JSON.stringify(result);
+}
+
+function digObject(obj, value, list) {
+  if( list.length === 0 ) {
+    return obj = value;
+  }
+  const key = list.shift();
+  let target;
+  if(obj.hasOwnProperty(key)) {
+    target = obj[key];
+  } else {
+    target = {};
+  }
+  target = digObject(target, value, list);
+  obj[key] = target;
+  return obj;
+}
+
+function convertNumHash2ArrayInMap(obj) {
+  for (let key in obj) {
+    if (checkIsNumHash(obj[key])) {
+      let numHash = obj[key];
+      obj[key] = Object.keys(numHash).map(key => numHash[key]);
+    }
+  }
+  return obj;
+}
+
+function checkIsNumHash(obj) {
+  if (typeof obj === "object" && obj !== null) {
+    const keys = Object.keys(obj);
+    const ret = keys.reduce(
+      function(flag, key) {
+        return (!flag) ?
+               false :
+               (isNaN(parseInt(key))) ?
+                 false :
+                 true;
+      }, true);
+    return ret;
+  }
+
+  return false;
+}

@@ -1,0 +1,38 @@
+{
+  "name": "json",
+  "version": "0.0.1",
+  "description": "A simple JSON to CSV converter that handles objects and nested documents.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf build/js/*.js && webpack src/js/app.babel.js build/js/bundle.js --module-bind 'js=babel-loader'",
+    "deploy": "npm run build && cp build/js/bundle.js assets/bundle.js",
+    "watch": "rm -rf build/js/*.js && webpack src/js/app.babel.js build/js/bundle.js --module-bind 'js=babel-loader' -w",
+    "serve": "browser-sync start --server --files='build/js/*.js,*.html'",
+    "lint": "eslint ./src/js/**/*.babel.js; exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beijaflor/json"
+  },
+  "author": "Sho Otani <sho.otani@gmail.com>",
+  "license": "CC0 1.0 Universal",
+  "bugs": {
+    "url": "https://github.com/beijaflor/json/issues"
+  },
+  "homepage": "https://github.com/beijaflor/json",
+  "dependencies": {
+    "babel-core": "^6.7.6",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "history": "^2.1.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.3.0",
+    "redux": "^3.5.0",
+    "webpack": "^1.13.0"
+  },
+  "devDependencies": {}
+}
